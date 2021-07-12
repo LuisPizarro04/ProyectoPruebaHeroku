@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+{% block titulo %} Registrar Cita{% endblock titulo %}
+{% block pagina %} Registro de Cita{% endblock pagina %}
+{% block contenido %}
+   <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+                <!-- Nested Row within Card Body -->
+                <div class="abs-center">
+                    <div class="col-lg-10" >
+                        <div class="p-5" >
+                            <div style="text-align: center">
+                                <h1 class="text-center">Registrar Cita</h1>
+                            </div>
+                            <div class="form-group">
+                                             <h5>Datos de la reserva</h5>
+                                             <label>
+                                             {{ especialidad }}
+                                                 </label>
+                                           </div>
+                                            <div class="form-group">
+                                                <label>
+                                             {{ hora }}
+                                                    </label>
+                                           </div>
+                                            <div class="form-group">
+                                           <label >
+                                             {{ fecha }}
+                                           </label>
+                                            </div>
+                            <form  action="/gestion_citas/reserva_final_2/" method="POST" class="user" class="border p-3 form">
+                                {% csrf_token %}
+                                <div class="form-group row">
+                                    <div class="modal-body">
+                                           <div class="form-group" >
+                                           <input class="form-control" name="rut" type="text" placeholder="Rut apoderado">
+                                           </div>
+                                        <button type="submit" class="btn btn-success btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-check"></i>
+                                        </span>
+                                        <span class="text">Guardar Cita</span>
+                                    </button>
+                                            <a href="{% url 'gestion_citas:listar_cita' %}" class="btn btn-warning btn-icon-split">
+            <span class="icon text-white-50">
+                <i class="fas fa-exclamation-triangle"></i>
+            </span>
+            <span class="text" style="text-align: center">Cancelar  reserva</span>
+        </a>
+                                    </div>
+                                </div>
+                            </form>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+{%  endblock contenido %}

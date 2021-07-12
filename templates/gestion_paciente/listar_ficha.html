@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+{% load static %}
+{% block titulo %}Listado de pacientes{% endblock titulo %}
+{% block pagina %}Listado de fichas registradas{% endblock pagina %}
+
+
+{% block contenido %}
+    <div class="container-fluid" style="text-align: right;">
+
+			<a href="{% url 'gestion_paciente:crear_ficha' %}" class="btn btn-success btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-user-plus"></i>
+                                        </span>
+                                        <span class="text">Registrar Fichas Nuevas</span>
+                                    </a>
+</div>
+    <div class="my-2"></div>
+
+    <div class="container-">
+        <!-- Page Heading -->
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-body">
+                <div class="table-responsive">
+                    {% if fichas %}
+                        <table class="table table-bordered" id="example" >
+                            <thead>
+                            <tr>
+                                <th>Apoderado</th>
+                                <th>Especialista</th>
+                                <th>Rut</th>
+                                <th>Nombres</th>
+                                <th>Apellidos</th>
+                                <th>Hora Atención</th>
+                                <th>Fecha Atención</th>
+                                <th>Editar</th>
+                                <th>Eliminar</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for ficha in fichas %}
+                                <tr>
+                                    <td>{{ ficha.representante }}</td>
+                                    <td>{{ ficha.especialidad }}</td>
+                                    <td>{{ ficha.rut }}</td>
+                                    <td>{{ ficha.nombres }}</td>
+                                    <td>{{ ficha.apellidos }}</td>
+                                    <td>{{ ficha.hora_atencion }}</td>
+                                    <td>{{ ficha.fecha_atencion }}</td>
+
+                                    <td style="text-align: center">
+                                        <a href="{% url 'gestion_paciente:editar_ficha' ficha.id %}" class="btn btn-warning btn-icon-splitt">
+                                            <span class="icon text-white-50">
+                                            <i class="fas fa-user-edit"></i>
+                                        </span>
+                                        </a></td>
+                                    <td style="text-align: center">
+                                        <a href="{% url 'gestion_paciente:eliminar_ficha' ficha.id %}" class="btn btn-danger btn-icon-splitt">
+                                            <span class="icon text-white-50">
+                                            <i class="fas fa-user-alt-slash"></i>
+                                        </span>
+                                        </a></td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    {% else %}
+                        <h1>No existen fichas regitradas</h1>
+                    {% endif %}
+                {% if is_paginated %}
+                    <div class="">
+                        <ul class="pagination">
+
+                            {% if page_obj.has_previous %}
+                        <li class="page-item">
+                            <a href="?page={{ page_obj.previous_page_number }}" class="page-link"> Anterior</a>
+                        </li>
+                                {% else %}
+                                 <li class="page-item disabled">
+                            <a href="#" class="page-link"> Anterior</a>
+                        </li>
+                                {% endif %}
+                        {% for i in paginator.page_range %}
+
+                        <li class="page-item {% if page_obj.number == i  %} active {% endif %}">
+                            <a href="?page={{ i }}" class="page-link">{{ i }}</a>
+                        </li>
+                        {% endfor %}
+
+                        {% if page_obj.has_next %}
+                            <li class="page-item">
+                            <a href="?page={{ page_obj.next_page_number }}" class="page-link"> Siguiente</a>
+                        </li>
+                            {% else %}
+                            <li class="page-item disabled">
+                            <a href="#" class="page-link"> Siguiente</a>
+                        </li>
+
+                            {% endif %}
+                        </ul>
+
+                    </div>
+
+
+                {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{%  endblock contenido %}

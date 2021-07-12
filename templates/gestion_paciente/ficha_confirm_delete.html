@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+{% block titulo %}Eliminar Ficha{% endblock titulo %}
+{% block pagina %}Confirmación de eliminación{% endblock pagina %}
+{% block contenido %}
+     <div class="modal-dialog modal-lg" role="document">
+         <div class="card shadow mb-4">
+    <div class="modal-content">
+    <div class="container-">
+
+            <div class="abs-center">
+<div class="card-body" style="text-align: center">
+    <form method="post">
+    {%  csrf_token %}
+    <h2 style="text-align: center">Desea eliminar el registro de: {{ ficha.nombres }}</h2>
+
+        <button type="submit" class="btn btn-danger btn-icon-split">
+            <span class="icon text-white-50">
+                <i class="fas fa-trash"></i>
+            </span>
+            <span class="text" style="text-align: center">Eliminar Paciente</span>
+        </button>
+
+        <a href="{% url 'gestion_paciente:listar_ficha' %}" class="btn btn-warning btn-icon-split">
+            <span class="icon text-white-50">
+                <i class="fas fa-exclamation-triangle"></i>
+            </span>
+            <span class="text" style="text-align: center">Cancelar  Acción</span>
+        </a>
+    </form>
+</div>
+        </div>
+    </div>
+            </div>
+    </div>
+     </div>
+
+{%  endblock contenido %}

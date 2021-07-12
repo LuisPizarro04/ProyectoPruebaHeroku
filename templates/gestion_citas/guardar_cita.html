@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+{% block titulo %} Registrar Cita{% endblock titulo %}
+{% block pagina %} Registro de Cita{% endblock pagina %}
+{% block contenido %}
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="abs-center">
+                <div class="col-lg-10" >
+                    <div class="p-5" >
+                        <div style="text-align: center">
+                            <h1 class="text-center">Registrar Cita</h1>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-group">
+                                <p><strong>Datos del apoderado:</strong></p>
+                                <p>Nombres: <em>{{ nombres_a }}</em></p>
+                                <p>Apellidos: <em>{{ apellidos_a }}</em></p>
+                                <p>Correo electronico : <em>{{ correo_a }}</em></p>
+                                <p>telefono: <em>{{ contacto_a }}</em></p>
+                                <hr>
+                                <p><strong>Datos del paciente</strong></p>
+                                <p>Nombres: <em>{{ nombres_p }}&nbsp;</em> </p>
+                                <p>Apellidos: <em>{{ apellidos_p }}</em></p>
+                                <hr>
+                                <p><strong>Datos de la reserva:</strong></p>
+                                <p>Especialidad : <em>{{ especialidad }}&nbsp; &nbsp; &nbsp;</em>Especialista: <em>especialista</em></p>
+                                <p>Fecha : <em>{{ fecha }}&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </em>Hora:<em>{{ hora }}</em></p>
+                                <p>&nbsp;</p>
+                            </div>
+                            <hr>
+                            <a href="{% url 'gestion_citas:guardar_reserva' %}" class="btn btn-success btn-icon-split">
+                                <span class="icon text-white-50">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                </span>
+                                <span class="text" style="text-align: center">Confirmar reserva</span>
+                            </a>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{%  endblock contenido %}

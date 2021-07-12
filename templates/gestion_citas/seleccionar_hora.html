@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+{% block titulo %} Registrar Cita{% endblock titulo %}
+{% block pagina %} Registro de Cita{% endblock pagina %}
+{% block contenido %}
+   <div class="modal-dialog modal-lg" role="document">
+       <div class="modal-content">
+           <div class="abs-center">
+               <div class="col-lg-10" >
+                   <div class="p-5" >
+                       <div style="text-align: center">
+                           <h1 class="text-center">Reserva de cita</h1>
+                           <h3>Paso 3: Selección de hora</h3>
+                           <p>Estas buscando: <strong>{{ horas }}</strong></p>
+                       </div>
+                       <form action="/gestion_citas/reserva_final" method="GET">
+                           <select name="hora" class="form-control form-control-lg" >
+                           <option > Por favor seleccione una hora
+                              {% for qry2 in horas %}
+                                            <li>
+                                                <option>{{ qry2.hora_reserva }} </option>
+                                            </li>
+                                    {% endfor %}
+                           </option>
+                           </select>
+
+                           <br>
+                           <div style="alignment: center">
+                               <button type="submit" class="btn btn-success btn-icon-split">
+                                   <span class="icon text-white-50">
+                                       <i class="fas fa-check"></i>
+                                   </span>
+                                   <span class="text">Continuar</span>
+                               </button>
+                               <a href="{% url 'gestion_citas:listar_cita' %}" class="btn btn-warning btn-icon-split">
+                                   <span class="icon text-white-50">
+                                       <i class="fas fa-exclamation-triangle"></i>
+                                   </span>
+                                   <span class="text" style="text-align: center">Cancelar  Acción</span>
+                               </a>
+                           </div>
+                       </form>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </div>
+
+{%  endblock contenido %}

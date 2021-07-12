@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load static %}
+{% block titulo %}Listado de usuarios{% endblock titulo %}
+{% block pagina %}Listado de usuarios registrados{% endblock pagina %}
+{% block contenido %}
+    <div class="my-2"></div>
+    <div class="container-">
+        <!-- Page Heading -->
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-body">
+                <div class="table-responsive">
+                    {% if object_list %}
+                        <table class="table table-bordered" id="example" >
+                            <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>User name</th>
+                                <th>Nombres</th>
+                                <th>Apellidos</th>
+                                <th>Editar</th>
+                                <th>Eliminar</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for usuario in object_list %}
+                                <tr>
+                                    <td>{{ usuario.id }}</td>
+                                    <td>{{ usuario.username }}</td>
+                                    <td>{{ usuario.nombres }}</td>
+                                    <td>{{ usuario.apellidos }}</td>
+                                    <td style="text-align: center">
+                                        <a href="{% url 'usuario:editar_usuario' usuario.id %}" class="btn btn-warning btn-icon-splitt">
+                                            <span class="icon text-white-50">
+                                            <i class="fas fa-user-edit"></i>
+                                        </span>
+                                        </a></td>
+                                    <td style="text-align: center">
+                                        <a href="{% url 'usuario:eliminar_usuario' usuario.id %}" class="btn btn-danger btn-icon-splitt">
+                                            <span class="icon text-white-50">
+                                            <i class="fas fa-user-alt-slash"></i>
+
+                                        </span>
+                                        </a></td>
+                                </tr>
+                            {% endfor %}
+                            {% else %}
+                        <h1>No existen usuarios regitrados</h1>
+                    {% endif %}
+                            </tbody>
+                        </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{%  endblock contenido %}

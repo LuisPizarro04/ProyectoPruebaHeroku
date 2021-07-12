@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% load static %}
+{% block titulo %}Listado de Fechas{% endblock titulo %}
+{% block pagina %}Listado de Fechas registradas{% endblock pagina %}
+
+
+{% block contenido %}
+    <div class="container-fluid" style="text-align: right;">
+
+			<a href="{% url 'gestion_calendario:crear_reserva' %}" class="btn btn-success btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-user-plus"></i>
+                                        </span>
+                                        <span class="text">Registrar Fecha Nuevas</span>
+                                    </a>
+</div>
+    <div class="my-2"></div>
+    <div class="container-">
+        <!-- Page Heading -->
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-body">
+                <div class="table-responsive">
+                    {% if calendarios %}
+                        <table class="table table-bordered" id="example" >
+                            <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Fecha</th>
+                                <th>Hora</th>
+                                <th>Estado</th>
+                                <th>Profesional</th>
+                                <th>Especialidad</th>
+                                <th>Editar</th>
+                                <th>Eliminar</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for reserva in calendarios %}
+                                <tr>
+                                    <td>{{ reserva.id }}</td>
+                                     <td>{{ reserva.fecha_reserva }}</td>
+                                    <td>{{ reserva.hora_reserva }}</td>
+                                    <td>{{ reserva.estado }}</td>
+                                    <td>{{ reserva.profesional }}</td>
+                                    <td>{{ reserva.especialidad }}</td>
+
+                                    <td style="text-align: center">
+                                        <a href="{% url 'gestion_calendario:editar_reserva' reserva.id %}" class="btn btn-warning btn-icon-splitt">
+                                            <span class="icon text-white-50">
+                                            <i class="fas fa-user-edit"></i>
+                                        </span>
+                                        </a></td>
+                                    <td style="text-align: center">
+                                        <a href="{% url 'gestion_calendario:eliminar_reserva' reserva.id %}" class="btn btn-danger btn-icon-splitt">
+                                            <span class="icon text-white-50">
+                                            <i class="fas fa-user-alt-slash"></i>
+                                        </span>
+                                        </a></td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    {% else %}
+                        <h1>No existen Fechas regitradas</h1>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{%  endblock contenido %}

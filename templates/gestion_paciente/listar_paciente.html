@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% load static %}
+{% block titulo %}Listado de pacientes{% endblock titulo %}
+{% block pagina %}Listado de pacientes registrados{% endblock pagina %}
+
+{% block contenido %}
+    <div class="container-fluid" style="text-align: right;">
+
+			<a href="{% url 'gestion_paciente:crear_paciente' %}" class="btn btn-success btn-icon-split ">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-user-plus"></i>
+                                        </span>
+                                        <span class="text">Registrar Paciente Nuevo</span>
+                                    </a>
+    </div>
+    <div class="my-2"></div>
+    <div class="container-">
+        <!-- Page Heading -->
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-body">
+                <div class="table-responsive">
+                    {% if pacientes %}
+                        <table class="table table-bordered" id="example" >
+                            <thead>
+                            <tr>
+                                <th>Rut</th>
+                                <th>Estado</th>
+                                <th>Nombres</th>
+                                <th>Apellidos</th>
+                                <th>Edad</th>
+                                <th>Sexo</th>
+                                <th>Nacionalidad</th>
+                                <th>Ciudad</th>
+                                <th>Fecha nacimiento</th>
+                                <th>Dirección</th>
+                                <th>Representante</th>
+                                <th>Parentesco</th>
+                                <th>Editar</th>
+                                <th>Eliminar</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for paciente in pacientes %}
+                                <tr>
+                                    <td>{{ paciente.rut }}</td>
+                                    <td>{{ paciente.estado }}</td>
+                                    <td>{{ paciente.nombres }}</td>
+                                    <td>{{ paciente.apellidos }}</td>
+                                    <td>{{ paciente.edad }}</td>
+                                    <td>{{ paciente.sexo }}</td>
+                                    <td>{{ paciente.nacionalidad }}</td>
+                                    <td>{{ paciente.ciudad_nacimiento }}</td>
+                                    <td>{{ paciente.fecha_nacimiento }}</td>
+                                    <td>{{ paciente.direccion }}</td>
+                                    <td>{{ paciente.representante }}</td>
+                                    <td>{{ paciente.parentesco }}</td>
+                                    <td style="text-align: center">
+                                        <a href="{% url 'gestion_paciente:editar_paciente' paciente.id %}" class="btn btn-warning btn-icon-splitt">
+                                            <span class="icon text-white-50">
+                                            <i class="fas fa-user-edit"></i>
+                                        </span>
+                                        </a></td>
+                                    <td style="text-align: center">
+                                        <a href="{% url 'gestion_paciente:eliminar_paciente' paciente.id %}" class="btn btn-danger btn-icon-splitt">
+                                            <span class="icon text-white-50">
+                                            <i class="fas fa-user-alt-slash"></i>
+                                            </span>
+                                        </a></td>
+                                </tr>
+                            {% endfor %}
+                    {% else %}
+                        <h1>No existen pacientes regitrados</h1>
+                    {% endif %}
+                    </tbody>
+                    </table>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+{%  endblock contenido %}

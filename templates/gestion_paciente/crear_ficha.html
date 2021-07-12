@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load static %}
+{% block titulo %} Registrar Paciente{% endblock titulo %}
+{% block pagina %} Registro de pacientes{% endblock pagina %}
+{% block contenido %}
+   <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+                <!-- Nested Row within Card Body -->
+                <div class="abs-center">
+                    <div class="col-lg-10" >
+                        <div class="p-5" >
+                            <div style="text-align: center">
+                                <h1 class="text-center">Registrar paciente</h1>
+                            </div>
+                            <form  method="post" class="user" class="border p-3 form">
+                                {% csrf_token %}
+                                <div class="form-group row">
+                                    <div class="modal-body">
+                                        {% if error %}
+                                            <h2>{{ error }}</h2>
+                                        {% else %}
+                                           <div class="form-group">
+                                           {{ form.representante.label }}
+                                               {{ form.representante }}
+                                           </div>
+                                             <div class="form-group">
+                                           {{ form.especialidad.label }}
+                                               {{ form.especialidad }}
+                                           </div>
+                                            <div class="form-group">
+                                           {{ form.rut.label }}
+                                               {{ form.rut }}
+                                           </div>
+                                            <div class="form-group">
+                                           {{ form.nombres.label }}
+                                               {{ form.nombres }}
+                                           </div>
+                                            <div class="form-group">
+                                           {{ form.apellidos.label }}
+                                               {{ form.apellidos }}
+                                           </div>
+                                            <div class="form-group">
+                                           {{ form.hora_atencion.label }}
+                                               {{ form.hora_atencion }}
+                                           </div>
+                                             <div class="form-group">
+                                           {{ form.fecha_atencion.label }}
+                                               {{ form.fecha_atencion }}
+                                           </div>
+
+                                            <button type="submit" class="btn btn-success btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-check"></i>
+                                        </span>
+                                        <span class="text">Guardar Paciente</span>
+                                    </button>
+
+                                            <a href="{% url 'gestion_paciente:listar_ficha' %}" class="btn btn-warning btn-icon-split">
+            <span class="icon text-white-50">
+                <i class="fas fa-exclamation-triangle"></i>
+            </span>
+            <span class="text" style="text-align: center">Cancelar  Acción</span>
+        </a>
+
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </form>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+{%  endblock contenido %}

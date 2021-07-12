@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+{% block titulo %} Registrar Usuario{% endblock titulo %}
+{% block pagina %} Registro de Usuarios{% endblock pagina %}
+{% block contenido %}
+   <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+                <!-- Nested Row within Card Body -->
+                <div class="abs-center">
+                    <div class="col-lg-10" >
+                        <div class="p-5" >
+                            <div style="text-align: center">
+                                <h1 class="text-center">Registrar Usuario</h1>
+                            </div>
+                            <form  method="post" class="user" class="border p-3 form">
+                                {% csrf_token %}
+                                <div class="form-group row">
+                                    <div class="modal-body">
+                                        {{ form.as_p }}
+                                            <button type="submit" class="btn btn-success btn-icon-split">
+                                                <span class="icon text-white-50">
+                                                    <i class="fas fa-check"></i>
+                                                </span>
+                                                <span class="text">Guardar Usuario</span>
+                                            </button>
+                                            <a href="{% url 'usuario:listar_usuario' %}" class="btn btn-warning btn-icon-split">
+                                                <span class="icon text-white-50">
+                                                    <i class="fas fa-exclamation-triangle"></i>
+                                                </span>
+                                                <span class="text" style="text-align: center">Cancelar  Acción</span>
+                                            </a>
+                                    </div>
+                                </div>
+                            </form>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+{%  endblock contenido %}

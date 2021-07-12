@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+{% block titulo %} Perfil Usuario{% endblock titulo %}
+{% block pagina %} Perfil de Usuario{% endblock pagina %}
+{% block contenido %}
+   <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+                <!-- Nested Row within Card Body -->
+                <div class="abs-center">
+                    <div class="col-lg-10" >
+                        <div class="p-5" >
+                            <div style="text-align: center">
+                                <h1 class="text-center">Configuración de los datos</h1>
+                            </div>
+
+                            <form  method="get" class="user" class="border p-3 form">
+                                {% csrf_token %}
+
+                                {{ form.as_p }}
+
+                                <div class="form-group row">
+                                    <button type="submit" class="btn btn-success btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-check"></i>
+                                        </span>
+                                        <span class="text">Guardar Cambios</span>
+                                    </button>
+                                    <a href="{% url 'index' %}" class="btn btn-warning btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-exclamation-triangle"></i>
+                                        </span>
+                                        <span class="text" style="text-align: center">Cancelar</span>
+                                    </a>
+                                </div>
+                            </form>
+
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+{%  endblock contenido %}

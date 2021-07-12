@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+{% load static %}
+{% block titulo %} Listar Profesionales {% endblock titulo %}
+{% block pagina %} Listado de profesionales{% endblock pagina %}
+{% block contenido %}
+   <div class="container-fluid" style="text-align: right;">
+
+			<a href="{% url 'gestion_profesionales:crear_profesional' %}" class="btn btn-success btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-user-plus"></i>
+                                        </span>
+                                        <span class="text">Registrar Profesional Nuevo</span>
+                                    </a>
+</div>
+    <div class="my-2"></div>
+
+    <div class="container-">
+        <!-- Page Heading -->
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-body">
+                <div class="table-responsive">
+                    {% if profesionales %}
+                        <table class="table table-bordered" id="example" >
+                            <thead>
+                            <tr>
+                                <th>Rut</th>
+                                <th>Estado</th>
+                                <th>Nombres</th>
+                                <th>Apellidos</th>
+                                <th>Especialidad</th>
+                                <th>Edad</th>
+                                <th>Sexo</th>
+                                <th>Nacionalidad</th>
+                                <th>Ciudad</th>
+                                <th>Fecha nacimiento</th>
+                                <th>Dirección</th>
+                                <th>Editar</th>
+                                <th>Eliminar</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for profesional in profesionales %}
+                                <tr>
+                                    <td>{{ profesional.rut }}</td>
+                                    <td>{{ profesional.estado }}</td>
+                                    <td>{{ profesional.nombres }}</td>
+                                    <td>{{ profesional.apellidos }}</td>
+                                     <td>{{ profesional.especialidad }}</td>
+                                    <td>{{ profesional.edad }}</td>
+                                    <td>{{ profesional.sexo }}</td>
+                                    <td>{{ profesional.nacionalidad }}</td>
+                                    <td>{{ profesional.ciudad_nacimiento }}</td>
+                                    <td>{{ profesional.fecha_nacimiento }}</td>
+                                    <td>{{ profesional.direccion }}</td>
+                                    <td style="text-align: center">
+                                        <a href="{% url 'gestion_profesionales:editar_profesional' profesional.id %}" class="btn btn-warning btn-icon-splitt">
+                                            <span class="icon text-white-50">
+                                            <i class="fas fa-user-edit"></i>
+                                        </span>
+                                        </a></td>
+                                    <td style="text-align: center">
+                                        <a href="{% url 'gestion_profesionales:eliminar_profesional' profesional.id%}" class="btn btn-danger btn-icon-splitt">
+                                            <span class="icon text-white-50">
+                                            <i class="fas fa-user-alt-slash"></i>
+                                        </span>
+                                        </a></td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    {% else %}
+                        <h1>No existen profesionales regitrados</h1>
+                    {% endif %}
+                {% if is_paginated %}
+                    <div class="">
+                        <ul class="pagination">
+
+                            {% if page_obj.has_previous %}
+                        <li class="page-item">
+                            <a href="?page={{ page_obj.previous_page_number }}" class="page-link"> Anterior</a>
+                        </li>
+                                {% else %}
+                                 <li class="page-item disabled">
+                            <a href="#" class="page-link"> Anterior</a>
+                        </li>
+                                {% endif %}
+                        {% for i in paginator.page_range %}
+
+                        <li class="page-item {% if page_obj.number == i  %} active {% endif %}">
+                            <a href="?page={{ i }}" class="page-link">{{ i }}</a>
+                        </li>
+                        {% endfor %}
+
+                        {% if page_obj.has_next %}
+                            <li class="page-item">
+                            <a href="?page={{ page_obj.next_page_number }}" class="page-link"> Siguiente</a>
+                        </li>
+                            {% else %}
+                            <li class="page-item disabled">
+                            <a href="#" class="page-link"> Siguiente</a>
+                        </li>
+
+                            {% endif %}
+                        </ul>
+
+                    </div>
+
+
+                {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{%  endblock contenido %}

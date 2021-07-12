@@ -1,0 +1,79 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+  	<title>Inicio</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+	</head>
+	<body class="img js-fullheight" style="background-image: url({% static 'images/bg3.jpg' %});">
+
+	<section class="ftco-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-center mb-5">
+                    <h2 class="heading-section">BIENVENIDO</h2>
+                    <h3 class="heading-section">Fundación Americana del Autismo</h3>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-lg-4">
+                    <div class="login-wrap p-0">
+                        <h3 class="mb-4 text-center"><strong>Inicio de Sesión</strong></h3>
+                        <form method="POST">
+                            {% csrf_token %}
+
+                            <div class="form-group">
+                                <input type=text class="form-control" placeholder="Usuario" required {{ form.username }}
+                            </div>
+                            <div class="form-group">
+                                <input id="password-field" type="password" class="form-control" placeholder="Contraseña" required {{form.password}}
+                                <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                            </div>
+                            <button style="color: #FFFFFF" type="submit" class="btn btn-warning form-control-file" ><strong>Iniciar Sesión</strong></button>
+                        <br><br>
+                        </form>
+
+                        <div>
+                            <a   href="{% url 'password_reset' %}" class="btn btn-danger form-control-file " ><strong>Olvidate tu contraseña?</strong></a>
+                            <p class="w-100 text-center">&mdash; No tienes cuenta? &mdash;</p>
+                            <a   href="{% url 'usuario:newuser' %}" class="btn btn-danger form-control-file " ><strong>Registrate Aqui!</strong></a>
+
+                        </div>
+                        <br>
+                        <p class="w-100 text-center">&mdash; Redes Sociales Fundación &mdash;</p>
+                        <div style="width:102%;float:left;">
+                            <div style="width:41%;float:left;">
+                            <a href="https://www.facebook.com/FADA.cl/" target="_blank">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <img alt="Siguenos en Facebook" src="{% static 'images/facebook.png' %}" width=60 height=60  /></a>
+                            </div>
+                            <div style="width:33%;float:left;">
+                            <a href="https://www.instagram.com/fundacionamericanadelautismo/?hl=es-la" target="_blank"><img alt="Siguenos en Facebook" src="{% static 'images/instagram.png' %}" width=60 height=60  /></a>
+                            </div>
+                            <div style="width:20%;float:left;">
+                            <a href="https://wa.me/56984645600"><img alt="Siguenos en Facebook" src="{% static 'images/whatsapp.png' %}" width=60 height=60  /></a>
+                            </div>
+                        </div>
+                        <br><br><br>
+                        <p class="w-100 text-center">&mdash; Reserva tus citas con nosotros &mdash;</p>
+                        <div class="social d-flex text-center">
+                            <button  style="background-color: #E67E22" type="submit" class="form-control btn btn-warning px-3"><strong>Reserva tu cita aquí</strong> </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/popper.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    </body>
+</html>
+

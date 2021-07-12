@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+{% block titulo %}Inicio{% endblock titulo %}
+{% block pagina %}{% endblock pagina %}
+
+{% block contenido %}
+    <div class="content">
+        <div>
+            <div class="row-1">
+                <div class="col-lg-12">
+                    {% block body %}
+                        <div class="col-md-12 prueba">
+                            <div class="card bg-primary">
+                                <div class="card-body">
+                                    <blockquote class="blockquote mb-0 text-light text-center">
+                                        <h1 class="text-light">{{ user.first_name | upper }} {{ user.last_name | upper }}, BIENVENIDO AL SISTEMA DE GESTIÓN DE LA FUNDACIÓN AMERICANA DEL AUTISMO</h1>
+                                    </blockquote>
+                                </div>
+                            </div>
+                        </div>
+                    {% endblock body %}
+                    <img class="img-thumbnail mx-auto d-block" src="{% static 'img/1.jpg' %}" alt="" style="width:100%;max-width:1100px">
+                </div>
+            </div>
+        </div>
+    </div>
+
+{%  endblock contenido %}
